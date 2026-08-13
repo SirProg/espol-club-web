@@ -1,0 +1,210 @@
+/**
+ * Sistema visual de ESPOLCLUB — puerto fiel de espol-club/src/theme/theme.js.
+ *
+ * La identidad institucional viene del manual de marca de la ESPOL:
+ *   · Azul PANTONE 275 C  → #001A43   (uso exclusivo de la identidad)
+ *   · Escala PANTONE Cool Gray 11 C al 10 %–90 %  (único secundario)
+ *   · Los "trazos": banderines con corte en chevrón, dispositivo gráfico propio
+ *
+ * Los hex son los mismos que en la app móvil: ambos entornos deben verse como
+ * el mismo producto. No introducir colores nuevos aquí.
+ *
+ * El tema resuelto vive en <html data-theme>, que fija el script anti-FOUC de
+ * index.html. La preferencia (system|light|dark) vive en localStorage.
+ */
+
+/* ── Tema claro (y respaldo si el script no llegó a ejecutarse) ─────────── */
+:root {
+  /* Identidad institucional */
+  --espol-primary: #001a43;
+  --espol-primary-strong: #000e24;
+  --espol-primary-soft: #e7eaf2;
+  --espol-on-primary: #ffffff;
+  --espol-accent: #c8102e;
+  --espol-accent-soft: #fbe9ec;
+  /* Ámbar de la estrella del identificador: solo para destacados. */
+  --espol-star: #b8791b;
+  --espol-star-soft: #fbf0dc;
+
+  /* Superficies */
+  --espol-background: #f6f7f9;
+  --espol-surface: #ffffff;
+  --espol-surface-alt: #edeef1; /* cool 10 */
+  --espol-border: #dcdee4; /* cool 20 */
+  --espol-hairline: #c4c7d0; /* cool 30 */
+
+  /* Texto */
+  --espol-ink: #161a22;
+  --espol-ink-muted: #565c6b; /* cool 70 */
+  --espol-ink-faint: #8c919f; /* cool 50 */
+
+  /* Cabeceras */
+  --espol-header-bg: #001a43;
+  --espol-header-text: #ffffff;
+
+  /* Bloques institucionales (barra lateral, identificador) */
+  --espol-hero-bg: #001a43;
+  --espol-hero-text: #ffffff;
+  --espol-hero-muted: #9aa7c2;
+  --espol-hero-line: #1b3057;
+  --espol-hero-avatar: #12294f;
+
+  /* Estados */
+  --espol-success: #0f7a4a;
+  --espol-success-soft: #e2f1e9;
+  --espol-warning: #9a6206;
+  --espol-warning-soft: #fbf0dc;
+  --espol-danger: #b32218;
+  --espol-danger-soft: #fbe8e6;
+  /**
+   * Tinta sobre el rojo sólido. En claro el rojo es oscuro y pide texto blanco;
+   * en oscuro sube a salmón y el blanco encima queda ilegible. Es la misma
+   * regla de luminancia que theme.js aplica en `clubPalette.onAccent`.
+   */
+  --espol-on-danger: #ffffff;
+
+  /* Sombra de tarjeta */
+  --espol-shadow-card: 0 3px 10px rgba(10, 27, 61, 0.06);
+}
+
+/* ── Tema oscuro ────────────────────────────────────────────────────────── */
+/* En oscuro el azul institucional pasa a ser el fondo y la interacción sube
+   de luminosidad para mantener el contraste. */
+:root[data-theme='dark'] {
+  --espol-primary: #5b8def;
+  --espol-primary-strong: #a6c2f5;
+  --espol-primary-soft: #14213a;
+  --espol-on-primary: #04101f;
+  --espol-accent: #ff6f7d;
+  --espol-accent-soft: #33171b;
+  --espol-star: #e3a54b;
+  --espol-star-soft: #2e2413;
+
+  --espol-background: #080d18;
+  --espol-surface: #101828;
+  --espol-surface-alt: #151e2e;
+  --espol-border: #243149;
+  --espol-hairline: #2c3a55;
+
+  --espol-ink: #e8ecf5;
+  --espol-ink-muted: #96a1b8;
+  --espol-ink-faint: #6d788f;
+
+  --espol-header-bg: #0a1120;
+  --espol-header-text: #e8ecf5;
+
+  --espol-hero-bg: #0c1832;
+  --espol-hero-text: #edf1fa;
+  --espol-hero-muted: #8ea0c4;
+  --espol-hero-line: #1d2c4c;
+  --espol-hero-avatar: #1b2c51;
+
+  --espol-success: #4fc98a;
+  --espol-success-soft: #0f2a1f;
+  --espol-warning: #e0ab5b;
+  --espol-warning-soft: #2a2214;
+  --espol-danger: #f2776f;
+  --espol-danger-soft: #2c1717;
+  --espol-on-danger: #2c1010;
+
+  --espol-shadow-card: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Respaldo sin JavaScript: solo aplica si el script anti-FOUC no fijó
+   data-theme, por eso el :not(). Con JS activo esta regla nunca gana. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --espol-primary: #5b8def;
+    --espol-primary-strong: #a6c2f5;
+    --espol-primary-soft: #14213a;
+    --espol-on-primary: #04101f;
+    --espol-accent: #ff6f7d;
+    --espol-accent-soft: #33171b;
+    --espol-star: #e3a54b;
+    --espol-star-soft: #2e2413;
+
+    --espol-background: #080d18;
+    --espol-surface: #101828;
+    --espol-surface-alt: #151e2e;
+    --espol-border: #243149;
+    --espol-hairline: #2c3a55;
+
+    --espol-ink: #e8ecf5;
+    --espol-ink-muted: #96a1b8;
+    --espol-ink-faint: #6d788f;
+
+    --espol-header-bg: #0a1120;
+    --espol-header-text: #e8ecf5;
+
+    --espol-hero-bg: #0c1832;
+    --espol-hero-text: #edf1fa;
+    --espol-hero-muted: #8ea0c4;
+    --espol-hero-line: #1d2c4c;
+    --espol-hero-avatar: #1b2c51;
+
+    --espol-success: #4fc98a;
+    --espol-success-soft: #0f2a1f;
+    --espol-warning: #e0ab5b;
+    --espol-warning-soft: #2a2214;
+    --espol-danger: #f2776f;
+    --espol-danger-soft: #2c1717;
+    --espol-on-danger: #2c1010;
+
+    --espol-shadow-card: 0 3px 10px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/**
+ * `@theme inline` mantiene la referencia var() dentro de cada utilidad, de modo
+ * que cambiar data-theme repinta sin recompilar nada. Con `@theme` a secas los
+ * valores quedarían congelados en :root y el tema oscuro no funcionaría.
+ */
+@theme inline {
+  --color-primary: var(--espol-primary);
+  --color-primary-strong: var(--espol-primary-strong);
+  --color-primary-soft: var(--espol-primary-soft);
+  --color-on-primary: var(--espol-on-primary);
+  --color-accent: var(--espol-accent);
+  --color-accent-soft: var(--espol-accent-soft);
+  --color-star: var(--espol-star);
+  --color-star-soft: var(--espol-star-soft);
+
+  --color-background: var(--espol-background);
+  --color-surface: var(--espol-surface);
+  --color-surface-alt: var(--espol-surface-alt);
+  --color-border: var(--espol-border);
+  --color-hairline: var(--espol-hairline);
+
+  --color-ink: var(--espol-ink);
+  --color-ink-muted: var(--espol-ink-muted);
+  --color-ink-faint: var(--espol-ink-faint);
+
+  --color-header-bg: var(--espol-header-bg);
+  --color-header-text: var(--espol-header-text);
+
+  --color-hero-bg: var(--espol-hero-bg);
+  --color-hero-text: var(--espol-hero-text);
+  --color-hero-muted: var(--espol-hero-muted);
+  --color-hero-line: var(--espol-hero-line);
+  --color-hero-avatar: var(--espol-hero-avatar);
+
+  --color-success: var(--espol-success);
+  --color-success-soft: var(--espol-success-soft);
+  --color-warning: var(--espol-warning);
+  --color-warning-soft: var(--espol-warning-soft);
+  --color-danger: var(--espol-danger);
+  --color-danger-soft: var(--espol-danger-soft);
+  --color-on-danger: var(--espol-on-danger);
+
+  /* Tres voces: Spectral solo para títulos, Plex Sans para la UI de trabajo,
+     Plex Mono para los datos que son registros. */
+  --font-display: 'Spectral', ui-serif, Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-card: var(--espol-shadow-card);
+}

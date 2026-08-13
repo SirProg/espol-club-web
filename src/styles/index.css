@@ -1,0 +1,204 @@
+@import 'tailwindcss';
+
+/* Fuentes autoalojadas: InfinityFree debe servir todo, sin CDN de Google.
+   Solo el subconjunto latin — cubre por completo el español. */
+@import '@fontsource/spectral/latin-500-italic.css';
+@import '@fontsource/spectral/latin-600.css';
+@import '@fontsource/spectral/latin-700.css';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-sans/latin-700.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+@import '@fontsource/ibm-plex-mono/latin-600.css';
+
+@import './tokens.css';
+
+/* El tema resuelto se declara en <html data-theme>, no por media query:
+   así el conmutador de tres modos gana en ambas direcciones. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-ink font-sans antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    /* Ninguna tabla debe empujar la página: cada una hace su propio scroll. */
+    overflow-x: hidden;
+  }
+
+  /* Un solo anillo de foco para todo el panel, siempre visible. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary rounded-[3px];
+  }
+
+  ::selection {
+    @apply bg-primary-soft text-primary-strong;
+  }
+
+  /* Los campos heredan la voz de trabajo; los navegadores no lo hacen solos. */
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* Los inputs de fecha en oscuro traen el icono negro por defecto. */
+  [data-theme='dark'] ::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.6);
+  }
+}
+
+@layer components {
+  /**
+   * Escala tipográfica — misma que la app móvil (theme.js › createTypography).
+   * Se expone como clases para que ninguna pantalla invente tamaños sueltos.
+   */
+
+  /* Titular de portada. */
+  .t-display {
+    @apply font-display font-bold text-ink;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  /* Título de pantalla. */
+  .t-title {
+    @apply font-display font-bold text-ink;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  /* Nombre de una entidad dentro de una tarjeta. */
+  .t-heading {
+    @apply font-display font-semibold text-ink;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  /* Frase institucional, en cursiva como en el identificador. */
+  .t-quote {
+    @apply font-display font-medium italic text-ink-muted;
+    font-size: 14px;
+  }
+
+  .t-subtitle {
+    @apply font-sans font-semibold text-ink;
+    font-size: 15px;
+  }
+
+  .t-body {
+    @apply font-sans text-ink;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .t-caption {
+    @apply font-sans text-ink-muted;
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  /* Antetítulo en versalitas: nombra la sección sin competir con el título. */
+  .t-label {
+    @apply font-sans font-semibold uppercase text-ink-faint;
+    font-size: 10px;
+    letter-spacing: 1.1px;
+  }
+
+  /**
+   * Datos que son registros: matrícula, PAO, token, fecha de auditoría, id.
+   * Esta es la regla que hace legible una tabla administrativa de un vistazo.
+   */
+  .t-data {
+    @apply font-mono font-medium text-ink;
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .t-data-lg {
+    @apply font-mono font-semibold text-ink;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /**
+   * Base de todo control de formulario del panel: los que envuelve `Field` y
+   * también los <select> y <textarea> sueltos de las tablas y los modales.
+   *
+   * Vive aquí y no en un archivo de componente porque es un token del sistema
+   * visual, no de una pantalla: si el alto o el anillo cambian, cambian en un
+   * solo sitio. El mínimo de 44px en móvil es el objetivo táctil accesible.
+   */
+  .input {
+    @apply w-full rounded-md bg-surface px-3 py-2 text-sm text-ink ring-1 ring-border;
+    @apply placeholder:text-ink-faint;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary;
+    @apply disabled:bg-surface-alt disabled:text-ink-faint;
+    @apply min-h-11 md:min-h-0;
+  }
+
+  /* Control en anillo de error: lo pinta el serializer del servidor. */
+  .input-invalid {
+    @apply ring-danger focus:ring-danger;
+  }
+
+  /**
+   * Casilla y radio.
+   *
+   * El preflight de Tailwind aplica `border: 0 solid` a todo, lo que borra el
+   * borde nativo de la casilla: sin él, una casilla vacía se ve como un cuadro
+   * relleno y no se distingue de una marcada. El borde explícito lo devuelve, y
+   * el estado deshabilitado se marca de verdad en lugar de quedarse igual que
+   * el habilitado.
+   */
+  .checkbox {
+    @apply size-4 shrink-0 cursor-pointer rounded-[3px];
+    @apply border border-hairline bg-surface;
+    accent-color: var(--espol-primary);
+  }
+
+  .checkbox:checked {
+    @apply border-primary;
+  }
+
+  .checkbox:disabled {
+    @apply cursor-not-allowed border-border bg-surface-alt opacity-50;
+  }
+
+  .radio {
+    @apply size-4 shrink-0 cursor-pointer rounded-full;
+    @apply border border-hairline bg-surface;
+    accent-color: var(--espol-primary);
+  }
+
+  .radio:disabled {
+    @apply cursor-not-allowed border-border bg-surface-alt opacity-50;
+  }
+}
+
+@layer utilities {
+  /* Contenedor de scroll horizontal propio para tablas anchas. */
+  .scroll-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
