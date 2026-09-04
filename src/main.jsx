@@ -21,3 +21,18 @@ createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </StrictMode>,
 )
+
+/**
+ * Service worker: solo en producción.
+ *
+ * En desarrollo interceptaría las peticiones de Vite y rompería el recambio en
+ * caliente, además de servir versiones cacheadas de módulos recién editados.
+ */
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // Sin service worker la aplicación funciona igual: solo pierde el modo
+      // sin conexión y la instalación. No es motivo para molestar a nadie.
+    })
+  })
+}

@@ -45,7 +45,7 @@ export default function Perfil() {
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
+        <div className="min-w-0 space-y-4 lg:col-span-2">
           <Card title="Datos institucionales" subtitle="Vienen de la ESPOL y no se editan aquí">
             <dl>
               <InfoRow label="Matrícula" value={data.enrollment} mono />

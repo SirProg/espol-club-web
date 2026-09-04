@@ -1,0 +1,33 @@
+{
+  "name": "ESPOLCLUB",
+  "short_name": "ESPOLCLUB",
+  "description": "Clubes y capítulos estudiantiles de la ESPOL: catálogo, postulaciones, eventos y credencial QR.",
+  "lang": "es-EC",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#001A43",
+  "theme_color": "#001A43",
+  "categories": ["education", "social"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Mi credencial QR", "url": "/app/credenciales" },
+    { "name": "Clubes", "url": "/app/clubes" },
+    { "name": "Eventos", "url": "/app/eventos" }
+  ]
+}

@@ -48,7 +48,7 @@ export default function Inicio() {
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
+        <div className="min-w-0 space-y-4 lg:col-span-2">
           <Card
             title="Tus próximos eventos"
             subtitle="Credenciales listas para usar"
@@ -73,7 +73,7 @@ export default function Inicio() {
                   <li key={item.id} className="py-3">
                     <Link
                       to={ROUTES.APP_CREDENCIALES}
-                      className="flex items-start justify-between gap-3 hover:opacity-80"
+                      className="flex flex-col gap-1 hover:opacity-80 sm:flex-row sm:items-start sm:justify-between sm:gap-3"
                     >
                       <div className="min-w-0">
                         <p className="t-body font-semibold">{item.event_name}</p>
@@ -81,7 +81,9 @@ export default function Inicio() {
                           {item.club_acronym} · {item.place || 'Sin lugar'}
                         </p>
                       </div>
-                      <p className="t-data shrink-0 text-right">
+                      {/* En móvil la fecha baja: en mono no encoge y a 375px
+                          empujaba la tarjeta fuera de la pantalla. */}
+                      <p className="t-data sm:shrink-0 sm:text-right">
                         {fmtDateTime(item.starts_at)}
                       </p>
                     </Link>

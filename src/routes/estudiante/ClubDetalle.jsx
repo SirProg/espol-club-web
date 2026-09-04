@@ -56,7 +56,7 @@ export default function ClubDetalle() {
       </SectionTitle>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
+        <div className="min-w-0 space-y-4 lg:col-span-2">
           <Card>
             <div className="flex gap-4">
               <Pennant text={data.acronym} width={44} />

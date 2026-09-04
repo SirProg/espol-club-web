@@ -1,6 +1,7 @@
 import { useAuth } from '../../context/auth'
 import { ROLE_LABELS } from '../../routing/modules'
 import ThemeSwitch from '../ui/ThemeSwitch'
+import InstallButton from '../ui/InstallButton'
 import NotificationBell from './NotificationBell'
 
 /**
@@ -27,6 +28,7 @@ export default function TopBar({ title, onMenu }) {
           <h2 className="truncate t-heading">{title}</h2>
         </div>
         <div className="flex items-center gap-2">
+          <InstallButton />
           <ThemeSwitch compact />
           <NotificationBell />
           <div className="hidden items-center gap-3 border-l border-border pl-3 sm:flex">

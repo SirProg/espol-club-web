@@ -19,4 +19,21 @@ export default defineConfig({
       '/api': 'http://localhost:8000',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        /**
+         * Un único archivo JS en vez de un fragmento por pantalla.
+         *
+         * El sitio se sube a mano por el gestor de archivos de InfinityFree, y
+         * 58 fragmentos son 58 subidas. Además el plan gratuito es lento por
+         * petición, así que una descarga de ~200 kB comprimidos llega antes que
+         * una cascada de fragmentos pequeños. Se pierde la carga diferida por
+         * ruta, que en un panel de gestión no cambia nada: quien entra va a
+         * navegar por varias pantallas de todos modos.
+         */
+        inlineDynamicImports: true,
+      },
+    },
+  },
 })

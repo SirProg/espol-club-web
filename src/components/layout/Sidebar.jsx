@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 
 import Pennant from '../ui/Pennant'
+import InstallButton from '../ui/InstallButton'
 import { useAuth } from '../../context/auth'
 import { ROLE_LABELS } from '../../routing/modules'
 
@@ -72,13 +73,16 @@ export default function Sidebar({ modules, open, onClose, subtitle = 'Panel de g
           {session?.profile?.full_name ?? '—'}
         </p>
         <p className="text-xs text-hero-muted">{ROLE_LABELS[session?.app_role] ?? session?.app_role}</p>
-        <button
-          type="button"
-          onClick={logout}
-          className="mt-3 w-full rounded-md bg-hero-line/40 px-3 py-2 text-left text-xs font-semibold text-hero-text transition-colors hover:bg-hero-line/70"
-        >
-          Cerrar sesión
-        </button>
+        <div className="mt-3 space-y-2">
+          <InstallButton variant="lateral" />
+          <button
+            type="button"
+            onClick={logout}
+            className="w-full rounded-md bg-hero-line/40 px-3 py-2 text-left text-xs font-semibold text-hero-text transition-colors hover:bg-hero-line/70"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </div>
     </div>
   )

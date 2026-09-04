@@ -3,9 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Panel web de ESPOLCLUB para líderes de club y la Gerencia de Bienestar Politécnico." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Clubes y capítulos estudiantiles de la ESPOL: catálogo, postulaciones, eventos y credencial QR." />
     <meta name="color-scheme" content="light dark" />
+
+    <!-- PWA: instalable y utilizable desde la pantalla de inicio. -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ESPOLCLUB" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- El color de la barra del navegador sigue al tema, como el resto. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F7F9" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080D18" />
     <title>ESPOLCLUB</title>
     <script>
       // Resuelve el tema antes del primer pintado para evitar el destello.

@@ -1,19 +1,92 @@
 @import 'tailwindcss';
 
-/* Fuentes autoalojadas: InfinityFree debe servir todo, sin CDN de Google.
-   Solo el subconjunto latin — cubre por completo el español. */
-@import '@fontsource/spectral/latin-500-italic.css';
-@import '@fontsource/spectral/latin-600.css';
-@import '@fontsource/spectral/latin-700.css';
-@import '@fontsource/ibm-plex-sans/latin-400.css';
-@import '@fontsource/ibm-plex-sans/latin-500.css';
-@import '@fontsource/ibm-plex-sans/latin-600.css';
-@import '@fontsource/ibm-plex-sans/latin-700.css';
-@import '@fontsource/ibm-plex-mono/latin-400.css';
-@import '@fontsource/ibm-plex-mono/latin-500.css';
-@import '@fontsource/ibm-plex-mono/latin-600.css';
-
 @import './tokens.css';
+
+/**
+ * Fuentes autoalojadas: InfinityFree debe servir todo, sin CDN de Google.
+ * Solo el subconjunto latin, que cubre por completo el español.
+ *
+ * Las declaramos a mano en vez de importar el CSS de @fontsource porque ese
+ * declara `woff2` **y** `woff`, y el fallback duplica diez archivos que ningún
+ * navegador capaz de ejecutar React 19 llegará a pedir. Al subir el sitio a
+ * mano, diez archivos muertos son diez subidas de más.
+ *
+ * `font-display: swap`: el texto se lee con la fuente del sistema mientras
+ * llega la definitiva, en lugar de dejar la pantalla en blanco.
+ */
+
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/spectral/files/spectral-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/spectral/files/spectral-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Spectral';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/spectral/files/spectral-latin-500-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+}
 
 /* El tema resuelto se declara en <html data-theme>, no por media query:
    así el conmutador de tres modos gana en ambas direcciones. */
