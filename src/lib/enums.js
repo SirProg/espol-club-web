@@ -24,6 +24,7 @@ const LABELS = {
   'In-person': 'Presencial',
   Online: 'En línea',
   Virtual: 'Virtual',
+  Hybrid: 'Híbrido',
   Public: 'Público',
   MembersOnly: 'Solo miembros',
   // Credencial y asistencia
@@ -95,7 +96,7 @@ export const FIELD_TYPES = [
 /** Los tipos que necesitan que el líder defina opciones. */
 export const FIELD_TYPES_WITH_OPTIONS = ['select', 'radio', 'checkbox']
 
-export const EVENT_MODES = ['In-person', 'Online', 'Virtual']
+export const EVENT_MODES = ['In-person', 'Online', 'Virtual', 'Hybrid']
 export const EVENT_VISIBILITY = ['Public', 'MembersOnly']
 
 /**
