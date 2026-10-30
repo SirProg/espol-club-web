@@ -131,7 +131,7 @@ export default function NominaPao() {
       miembro: (
         <div>
           <div className="t-body font-medium">{member.full_name}</div>
-          <div className="t-caption font-mono">{member.enrollment}</div>
+          <div className="t-caption tabular-nums">{member.enrollment}</div>
         </div>
       ),
       vigencia: `${fmtDate(member.valid_from)} → ${fmtDate(member.valid_until)}`,

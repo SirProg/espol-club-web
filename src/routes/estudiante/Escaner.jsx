@@ -131,7 +131,7 @@ export default function Escaner() {
         <Card title="Cámara">
           {soportaCamara ? (
             <>
-              <div className="overflow-hidden rounded-[10px] bg-surface-alt">
+              <div className="overflow-hidden rounded-lg bg-surface-alt">
                 {escaneando ? (
                   <video
                     ref={videoRef}

@@ -121,7 +121,7 @@ export default function PaoConfig() {
     __stripe: period.status === 'Active' ? 'success' : 'neutral',
     período: (
       <div>
-        <div className="t-body font-medium font-mono">{period.pao_period}</div>
+        <div className="t-body font-medium tabular-nums">{period.pao_period}</div>
         <div className="t-caption">Orden {period.sequence ?? '—'}</div>
       </div>
     ),

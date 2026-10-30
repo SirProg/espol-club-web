@@ -52,7 +52,7 @@ export default function ThemeSwitch({ compact }) {
   if (compact) {
     return (
       <div
-        className="flex items-center gap-0.5 rounded-md bg-surface-alt p-0.5 ring-1 ring-border"
+        className="flex items-center gap-0.5 rounded-full bg-primary/6 p-1"
         role="group"
         aria-label="Tema"
       >
@@ -63,7 +63,7 @@ export default function ThemeSwitch({ compact }) {
             onClick={() => setMode(option.value)}
             aria-pressed={mode === option.value}
             title={option.label}
-            className={`inline-flex h-7 w-7 items-center justify-center rounded transition-colors ${
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
               mode === option.value
                 ? 'bg-primary text-on-primary'
                 : 'text-ink-muted hover:text-ink'
@@ -78,14 +78,14 @@ export default function ThemeSwitch({ compact }) {
   }
 
   return (
-    <div className="flex items-center rounded-md bg-surface-alt p-1" role="group" aria-label="Tema">
+    <div className="flex items-center rounded-full bg-primary/6 p-1" role="group" aria-label="Tema">
       {THEME_MODES.map((option) => (
         <button
           key={option.value}
           type="button"
           onClick={() => setMode(option.value)}
           aria-pressed={mode === option.value}
-          className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
+          className={`rounded-full px-3 py-1.5 text-[13px] font-semibold transition-colors ${
             mode === option.value ? 'bg-primary text-on-primary' : 'text-ink-muted hover:text-ink'
           }`}
         >

@@ -11,7 +11,7 @@ import SectionTitle from '../../components/ui/SectionTitle'
 import Card from '../../components/ui/Card'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
-import Pennant from '../../components/ui/Pennant'
+import ClubMark from '../../components/ui/ClubMark'
 import EmptyState from '../../components/ui/EmptyState'
 
 /**
@@ -47,7 +47,7 @@ export default function Inicio() {
         description="Esto es lo que tienes por delante."
       />
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="min-w-0 space-y-4 lg:col-span-2">
           <Card
             title="Tus próximos eventos"
@@ -156,7 +156,7 @@ export default function Inicio() {
                         to={ROUTES.APP_CLUB.replace(':clubId', m.club_id)}
                         className="flex items-center gap-3 hover:opacity-80"
                       >
-                        <Pennant text={m.club_acronym} width={26} />
+                        <ClubMark acronym={m.club_acronym} size={40} />
                         <div className="min-w-0 flex-1">
                           <p className="t-body truncate font-medium">{m.club_name}</p>
                           <p className="t-caption">{m.role_name}</p>

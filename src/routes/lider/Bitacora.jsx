@@ -62,7 +62,7 @@ export default function Bitacora() {
     inscrito: (
       <div>
         <div className="t-body font-medium">{registration.full_name}</div>
-        <div className="t-caption font-mono">{registration.enrollment}</div>
+        <div className="t-caption tabular-nums">{registration.enrollment}</div>
       </div>
     ),
     fecha: fmtDateTime(registration.registered_at),
@@ -134,7 +134,7 @@ export default function Bitacora() {
 
           <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-4">
             {summaryCards.map((card) => (
-              <div key={card.label} className="rounded-[10px] bg-surface p-4 shadow-card ring-1 ring-border">
+              <div key={card.label} className="rounded-lg bg-surface p-4 shadow-raised">
                 <p className="t-caption">{card.label}</p>
                 <p className="t-heading text-xl">{card.value}</p>
               </div>

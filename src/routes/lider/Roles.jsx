@@ -171,7 +171,7 @@ export default function Roles() {
           <section>
             <SubsectionTitle hint="Creados por la directiva">Roles personalizados</SubsectionTitle>
             {custom.length === 0 ? (
-              <p className="t-caption rounded-[10px] bg-surface px-4 py-3 ring-1 ring-border">
+              <p className="t-caption rounded-lg bg-surface px-4 py-3 ring-1 ring-border">
                 Aún no has creado roles personalizados.
               </p>
             ) : (

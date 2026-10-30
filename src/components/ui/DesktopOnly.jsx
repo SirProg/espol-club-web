@@ -12,7 +12,7 @@ export default function DesktopOnly({ children }) {
   if (!isMobile) return children
 
   return (
-    <div className="rounded-[10px] bg-primary-soft px-4 py-3">
+    <div className="rounded-lg bg-primary-soft px-4 py-3">
       <p className="t-caption text-primary">
         Disponible en escritorio. Esta gestión requiere una pantalla más amplia.
       </p>

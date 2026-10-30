@@ -35,7 +35,7 @@ export default function Table({
   }
 
   return (
-    <div className="rounded-[10px] bg-surface shadow-card ring-1 ring-border">
+    <div className="overflow-hidden rounded-lg bg-surface shadow-raised">
       {headerExtra && (
         <div className="flex items-center justify-between border-b border-border px-4 py-3 md:px-5">
           {headerExtra}
@@ -103,7 +103,7 @@ export default function Table({
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className={`t-label whitespace-nowrap px-4 py-3 md:px-5 ${col.className ?? ''}`}
+                    className={`t-label whitespace-nowrap px-3 py-3 first:pl-5 last:pr-5 ${col.className ?? ''}`}
                   >
                     {col.header}
                   </th>
@@ -120,7 +120,7 @@ export default function Table({
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className={`px-4 py-3 align-middle md:px-5 ${col.mono ? 't-data' : ''} ${col.className ?? ''}`}
+                      className={`px-3 py-3 align-middle first:pl-5 last:pr-5 ${col.mono ? 't-data whitespace-nowrap' : ''} ${col.className ?? ''}`}
                     >
                       {(col.render ?? ((r) => r[col.key]))(row)}
                     </td>

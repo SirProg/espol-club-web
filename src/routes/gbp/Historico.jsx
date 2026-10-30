@@ -39,13 +39,13 @@ export default function Historico() {
     club: (
       <div>
         <div className="t-body font-medium">{club.name}</div>
-        <div className="t-caption font-mono">{club.acronym}</div>
+        <div className="t-caption tabular-nums">{club.acronym}</div>
       </div>
     ),
     líder: club.leader ? (
       <div>
         <div className="t-body font-medium">{club.leader.full_name}</div>
-        <div className="t-caption font-mono">{club.leader.enrollment}</div>
+        <div className="t-caption tabular-nums">{club.leader.enrollment}</div>
       </div>
     ) : (
       <span className="t-caption">Sin líder registrado</span>

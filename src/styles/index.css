@@ -7,85 +7,38 @@
  * Solo el subconjunto latin, que cubre por completo el español.
  *
  * Las declaramos a mano en vez de importar el CSS de @fontsource porque ese
- * declara `woff2` **y** `woff`, y el fallback duplica diez archivos que ningún
- * navegador capaz de ejecutar React 19 llegará a pedir. Al subir el sitio a
- * mano, diez archivos muertos son diez subidas de más.
+ * trae un archivo por eje y por subconjunto: al subir el sitio a mano, cada
+ * archivo muerto es una subida de más.
  *
+ * Bricolage va en `standard` porque los títulos usan el eje de ancho (wdth).
  * `font-display: swap`: el texto se lee con la fuente del sistema mientras
  * llega la definitiva, en lugar de dejar la pantalla en blanco.
  */
 
 @font-face {
-  font-family: 'Spectral';
+  font-family: 'Bricolage Grotesque Variable';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
   font-display: swap;
-  src: url('@fontsource/spectral/files/spectral-latin-600-normal.woff2') format('woff2');
+  src: url('@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-standard-normal.woff2')
+    format('woff2-variations');
 }
 @font-face {
-  font-family: 'Spectral';
+  font-family: 'Atkinson Hyperlegible Next Variable';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 200 800;
   font-display: swap;
-  src: url('@fontsource/spectral/files/spectral-latin-700-normal.woff2') format('woff2');
+  src: url('@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2')
+    format('woff2-variations');
 }
 @font-face {
-  font-family: 'Spectral';
+  font-family: 'Atkinson Hyperlegible Next Variable';
   font-style: italic;
-  font-weight: 500;
+  font-weight: 200 800;
   font-display: swap;
-  src: url('@fontsource/spectral/files/spectral-latin-500-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Mono';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+  src: url('@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-italic.woff2')
+    format('woff2-variations');
 }
 
 /* El tema resuelto se declara en <html data-theme>, no por media query:
@@ -99,15 +52,27 @@
 
   body {
     @apply bg-background text-ink font-sans antialiased;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.55;
     /* Ninguna tabla debe empujar la página: cada una hace su propio scroll. */
     overflow-x: hidden;
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   /* Un solo anillo de foco para todo el panel, siempre visible. */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-primary rounded-[3px];
+    outline: 3px solid var(--espol-ink);
+    outline-offset: 3px;
   }
 
   ::selection {
@@ -131,59 +96,68 @@
 
 @layer components {
   /**
-   * Escala tipográfica — misma que la app móvil (theme.js › createTypography).
+   * Escala tipográfica de Club-search: títulos estrechos, pesados y apretados.
    * Se expone como clases para que ninguna pantalla invente tamaños sueltos.
    */
 
   /* Titular de portada. */
   .t-display {
-    @apply font-display font-bold text-ink;
-    font-size: 30px;
-    line-height: 36px;
+    @apply font-display text-ink;
+    font-size: clamp(2.3rem, 3.5vw, 3.45rem);
+    font-weight: 800;
+    font-variation-settings: 'wdth' 86;
+    line-height: 0.96;
+    letter-spacing: -0.03em;
   }
 
   /* Título de pantalla. */
   .t-title {
-    @apply font-display font-bold text-ink;
-    font-size: 24px;
-    line-height: 30px;
+    @apply font-display text-ink;
+    font-size: clamp(2.1rem, 4vw, 3rem);
+    font-weight: 800;
+    font-variation-settings: 'wdth' 88;
+    line-height: 1;
+    letter-spacing: -0.025em;
   }
 
   /* Nombre de una entidad dentro de una tarjeta. */
   .t-heading {
-    @apply font-display font-semibold text-ink;
-    font-size: 18px;
-    line-height: 24px;
+    @apply font-display text-ink;
+    font-size: 1.25rem;
+    font-weight: 750;
+    font-variation-settings: 'wdth' 90;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
   }
 
   /* Frase institucional, en cursiva como en el identificador. */
   .t-quote {
-    @apply font-display font-medium italic text-ink-muted;
-    font-size: 14px;
+    @apply font-sans font-medium italic text-ink-muted;
+    font-size: 15px;
   }
 
   .t-subtitle {
-    @apply font-sans font-semibold text-ink;
-    font-size: 15px;
+    @apply font-sans font-bold text-ink;
+    font-size: 16px;
   }
 
   .t-body {
     @apply font-sans text-ink;
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .t-caption {
     @apply font-sans text-ink-muted;
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 14px;
+    line-height: 20px;
   }
 
-  /* Antetítulo en versalitas: nombra la sección sin competir con el título. */
+  /* Rótulo de un dato o de un campo: sin versalitas, como los `facts`. */
   .t-label {
-    @apply font-sans font-semibold uppercase text-ink-faint;
-    font-size: 10px;
-    letter-spacing: 1.1px;
+    @apply font-sans font-bold text-ink-muted;
+    font-size: 13px;
+    line-height: 18px;
   }
 
   /**
@@ -191,14 +165,15 @@
    * Esta es la regla que hace legible una tabla administrativa de un vistazo.
    */
   .t-data {
-    @apply font-mono font-medium text-ink;
-    font-size: 12.5px;
+    @apply font-sans font-semibold text-ink;
+    font-size: 14px;
     font-variant-numeric: tabular-nums;
   }
 
   .t-data-lg {
-    @apply font-mono font-semibold text-ink;
-    font-size: 22px;
+    @apply font-display text-ink;
+    font-size: 26px;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
   }
 
@@ -211,11 +186,11 @@
    * solo sitio. El mínimo de 44px en móvil es el objetivo táctil accesible.
    */
   .input {
-    @apply w-full rounded-md bg-surface px-3 py-2 text-sm text-ink ring-1 ring-border;
+    @apply w-full rounded-md bg-surface px-3.5 py-2.5 text-base text-ink ring-[1.5px] ring-hairline;
     @apply placeholder:text-ink-faint;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary;
+    @apply focus:ring-primary;
     @apply disabled:bg-surface-alt disabled:text-ink-faint;
-    @apply min-h-11 md:min-h-0;
+    @apply min-h-11;
   }
 
   /* Control en anillo de error: lo pinta el serializer del servidor. */
@@ -255,6 +230,551 @@
   .radio:disabled {
     @apply cursor-not-allowed border-border bg-surface-alt opacity-50;
   }
+
+  /* ── Lacas ─────────────────────────────────────────────────────────────
+     --lacquer y --lacquer-ink los fija cada club desde lib/branches.js. */
+  .lacquered {
+    background: var(--lacquer);
+    color: var(--lacquer-ink);
+  }
+
+  .club-card {
+    @apply relative flex h-full flex-col overflow-hidden rounded-[26px] shadow-raised;
+    transition: transform 0.25s var(--ease-gallery);
+  }
+
+  .club-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .club-card :is(.t-heading, .t-caption) {
+    color: inherit;
+  }
+
+  /* El logo o la sigla al centro; el margen deja libre el pequeño pliegue. */
+  .club-art {
+    --art-pad-x: 24px;
+    --art-pad-y: 48px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+    padding: var(--art-pad-y) var(--art-pad-x);
+    overflow: hidden;
+    background:
+      radial-gradient(closest-side, rgb(255 255 255 / 0.2), transparent),
+      var(--lacquer);
+    color: var(--lacquer-ink);
+    container-type: inline-size;
+  }
+
+  /* Los logos traen fondos propios: la placa blanca los iguala y los hace legibles. */
+  .club-art__media {
+    width: 112px;
+    height: 112px;
+    padding: 10px;
+    border-radius: 22px;
+    background: #ffffff;
+    object-fit: contain;
+    box-shadow: 0 8px 18px rgb(28 26 58 / 0.18);
+  }
+
+  /* La sigla ocupa el ancho disponible según su número de letras. */
+  .club-art__mono {
+    max-width: 100%;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, calc(100cqi / (var(--chars) * 0.64)), 5.5rem);
+    font-weight: 800;
+    font-variation-settings: 'wdth' 88;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  /* Sigla compacta para listas. */
+  .club-mark {
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    min-width: var(--mark);
+    height: var(--mark);
+    padding: 0 calc(var(--mark) * 0.2);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: calc(var(--mark) * 0.3);
+    font-weight: 800;
+    font-variation-settings: 'wdth' 80;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .club-mark[data-long] {
+    font-size: calc(var(--mark) * 0.24);
+  }
+
+  /* La propia esquina se curva como una etiqueta despegada, dentro de 52 px. */
+  .club-fold {
+    --corner-paper: color-mix(in oklab, var(--lacquer) 5%, #ffffff);
+    --corner-shade: color-mix(in oklab, var(--lacquer) 32%, #c4c5d2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 52px;
+    height: 52px;
+    color: color-mix(in oklab, var(--lacquer) 65%, #1c1a3a);
+    pointer-events: none;
+  }
+
+  .club-fold__corner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform-origin: top right;
+    transition: transform 0.25s var(--ease-gallery);
+  }
+
+  .club-fold__shadow {
+    fill: none;
+    stroke: #1c1a3a;
+    stroke-width: 4;
+    opacity: 0.24;
+  }
+
+  .club-fold__edge {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 0.65;
+    stroke-opacity: 0.8;
+  }
+
+  .club-fold__icon {
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s var(--ease-gallery);
+  }
+
+  .club-card:hover .club-fold__corner {
+    transform: scale(1.06);
+  }
+
+  .club-card:hover .club-fold__icon {
+    transform: scale(1.08);
+  }
+
+  /* Órbita: cuadrante superior izquierdo de un anillo grande, recortado por
+     la sección. La geometría se calcula en ClubOrbit.jsx. */
+  .orbit {
+    --label-w: 160px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: clamp(540px, calc(100dvh - 140px), 820px);
+  }
+
+  .orbit__stage {
+    position: relative;
+    flex: 1;
+    overflow: clip;
+  }
+
+  .orbit__band-shadow {
+    position: absolute;
+    inset: 0;
+    filter: drop-shadow(0 18px 26px rgb(70 71 95 / 0.1));
+    pointer-events: none;
+  }
+
+  /* Banda con volumen suave: bordes más oscuros y cresta clara hacia el interior. */
+  .orbit__band {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle closest-side,
+      var(--espol-band-1) var(--ri),
+      var(--espol-band-2) calc(var(--ri) + var(--bw) * 0.16),
+      var(--espol-band-3) calc(var(--ri) + var(--bw) * 0.42),
+      var(--espol-band-4) calc(var(--ri) + var(--bw) * 0.62),
+      var(--espol-band-5) calc(var(--ri) + var(--bw) * 0.84),
+      var(--espol-band-6) var(--ro)
+    );
+    mask: radial-gradient(
+      circle closest-side,
+      transparent calc(var(--ri) - 0.75px),
+      #000 calc(var(--ri) + 0.75px),
+      #000 calc(var(--ro) - 0.75px),
+      transparent calc(var(--ro) + 0.75px)
+    );
+  }
+
+  .orbit[data-ready] .orbit__band-shadow {
+    animation: orbit-band-in 0.8s var(--ease-gallery) both;
+  }
+
+  .orbit__track {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Cada club se ubica por su centro; ClubOrbit escribe transform, --s y la estela. */
+  .orbit__item {
+    --s: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    will-change: transform;
+    transition: opacity 0.25s;
+  }
+
+  .orbit:not([data-ready]) .orbit__item {
+    visibility: hidden;
+  }
+
+  .orbit[data-active] .orbit__item:not([data-active]) {
+    opacity: 0.6;
+  }
+
+  /* Estela suave detrás de la burbuja. Desaparece al detenerse. */
+  .orbit__trail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(var(--bubble) * 1.9);
+    height: calc(var(--bubble) * 0.9);
+    translate: 0 -50%;
+    rotate: var(--trail-a, 0rad);
+    scale: var(--s);
+    transform-origin: 0 50%;
+    border-radius: 999px;
+    background: radial-gradient(ellipse 100% 50% at 0% 50%, rgb(123 97 209 / 0.26), rgb(123 97 209 / 0) 100%);
+    opacity: var(--trail-o, 0);
+    pointer-events: none;
+  }
+
+  .orbit__bubble {
+    --lift: 1;
+    position: absolute;
+    left: calc(var(--bubble) / -2);
+    top: calc(var(--bubble) / -2);
+    width: var(--bubble);
+    height: var(--bubble);
+    border-radius: 50%;
+    cursor: pointer;
+    scale: var(--lift);
+    transition: scale 0.3s var(--ease-gallery);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .orbit__item[data-active] .orbit__bubble {
+    --lift: 1.08;
+  }
+
+  .orbit__bubble:focus-visible {
+    outline: none;
+  }
+
+  .orbit__disc {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--bubble) * 0.03);
+    overflow: hidden;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, var(--espol-bubble-light) 0%, var(--espol-bubble) 62%);
+    color: var(--espol-bubble-ink);
+    box-shadow:
+      inset 0 0 0 1px var(--espol-bubble-edge),
+      inset 0 2px 0 var(--espol-bubble-shine),
+      0 10px 22px -12px rgb(70 71 95 / 0.38),
+      0 1px 3px rgb(70 71 95 / 0.12);
+    scale: var(--s);
+    transition: box-shadow 0.2s;
+  }
+
+  .orbit__item[data-active] .orbit__disc {
+    box-shadow:
+      0 0 0 3px var(--espol-surface),
+      0 0 0 6px var(--espol-violet),
+      0 14px 28px -12px rgb(123 97 209 / 0.55);
+  }
+
+  .orbit__bubble:focus-visible .orbit__disc {
+    outline: 3px solid var(--espol-ink);
+    outline-offset: 9px;
+  }
+
+  .orbit__disc[data-logo] {
+    background: #ffffff;
+  }
+
+  .orbit__disc img {
+    display: block;
+    width: 68%;
+    height: 68%;
+    object-fit: contain;
+  }
+
+  .orbit__glyph {
+    width: calc(var(--bubble) * 0.26);
+    height: calc(var(--bubble) * 0.26);
+  }
+
+  .orbit__mono {
+    max-width: 84%;
+    font: 800 calc(var(--bubble) * 0.2) / 1 var(--font-display);
+    font-variation-settings: 'wdth' 80;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+  }
+
+  .orbit__mono[data-long] {
+    font-size: calc(var(--bubble) * 0.15);
+  }
+
+  /* El nombre va fuera de la imagen y no se escala: siempre legible. */
+  .orbit__label {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--bubble) * (0.5 + var(--s) / 2) + 9px);
+    translate: -50% 0;
+    display: -webkit-box;
+    width: max-content;
+    max-width: var(--label-w);
+    padding: 0 11px;
+    /* Borde y no relleno: line-clamp recorta en el relleno y asomaría otra línea. */
+    border-block: 5px solid transparent;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--espol-surface);
+    color: var(--espol-ink);
+    font: 700 0.86rem/1.2 var(--font-sans);
+    text-align: center;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-shadow: 0 0 0 1px var(--espol-bubble-edge), 0 4px 12px -8px rgb(70 71 95 / 0.35);
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .orbit__item[data-active] .orbit__label {
+    background: var(--espol-violet);
+    color: var(--espol-on-violet);
+  }
+
+  /* Ficha del club: fuera del recorte. En escritorio ClubOrbit la ubica junto al club. */
+  .orbit__card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(320px, 80vw);
+    padding: 16px 18px 18px;
+    border-radius: 20px;
+    background: var(--espol-surface);
+    box-shadow: 0 0 0 1px var(--espol-bubble-edge), 0 24px 44px -24px rgb(70 71 95 / 0.45);
+    animation: orbit-card-in 0.25s var(--ease-gallery);
+  }
+
+  .orbit__card[hidden] {
+    display: none;
+  }
+
+  .orbit__club-branch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--espol-ink-muted);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .orbit__club-chip {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--lacquer);
+    color: var(--lacquer-ink);
+  }
+
+  .orbit__club-chip svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .orbit__club-name {
+    margin-top: 10px;
+    font: 800 1.4rem/1.05 var(--font-display);
+    font-variation-settings: 'wdth' 88;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .orbit__club-kind {
+    margin-top: 4px;
+    color: var(--espol-violet-text);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .orbit__club-desc {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .orbit__close {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 16px 0 12px;
+    border: 1.5px solid var(--espol-violet);
+    border-radius: 999px;
+    color: var(--espol-violet-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .orbit__close:hover {
+    background: rgb(123 97 209 / 0.08);
+  }
+
+  .orbit__close-icon {
+    width: 12px;
+    height: 12px;
+    background: currentColor;
+    clip-path: polygon(8% 0, 100% 50%, 8% 100%);
+  }
+
+  /* Controles discretos, fuera del recorrido: en la zona interior del arco. */
+  .orbit__controls {
+    position: absolute;
+    right: 20px;
+    bottom: 14px;
+    z-index: 4;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--espol-surface) 70%, transparent);
+    box-shadow: 0 0 0 1px var(--espol-bubble-edge);
+  }
+
+  .orbit__control {
+    display: inline-grid;
+    grid-auto-flow: column;
+    place-items: center;
+    gap: 7px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 10px;
+    border-radius: 999px;
+    color: var(--espol-bubble-ink);
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .orbit__control:hover {
+    background: rgb(70 71 95 / 0.08);
+    color: var(--espol-ink);
+  }
+
+  .orbit__chevron {
+    width: 9px;
+    height: 9px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    rotate: 45deg;
+    translate: -2px 0;
+  }
+
+  .orbit__chevron[data-dir='back'] {
+    rotate: -135deg;
+    translate: 2px 0;
+  }
+
+  .orbit__pause-icon {
+    width: 10px;
+    height: 11px;
+    background: linear-gradient(90deg, currentColor 0 34%, transparent 34% 66%, currentColor 66%);
+  }
+
+  .orbit__pause-icon[data-state='play'] {
+    background: currentColor;
+    clip-path: polygon(8% 0, 100% 50%, 8% 100%);
+  }
+
+  @media (max-width: 879px) {
+    .orbit {
+      --label-w: 128px;
+      min-height: 0;
+    }
+
+    /* En la portada de acceso la órbita acompaña: el formulario debe quedar cerca. */
+    .orbit__stage {
+      flex: none;
+      height: clamp(240px, 66vw, 340px);
+    }
+
+    /* Al tocar un club, la ficha se abre bajo el arco, sobre el formulario. */
+    .orbit__card {
+      top: calc(100% - 12px);
+      left: 16px;
+      right: 16px;
+      width: auto;
+      max-width: 460px;
+    }
+
+    .orbit__club-name {
+      font-size: 1.25rem;
+    }
+
+    .orbit__controls {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      align-self: flex-end;
+      margin: 6px 16px 0;
+    }
+  }
+}
+
+@keyframes orbit-band-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes orbit-card-in {
+  from {
+    opacity: 0;
+  }
 }
 
 @layer utilities {
@@ -273,5 +793,13 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .orbit__trail {
+    display: none;
+  }
+
+  .club-card:hover {
+    transform: none;
   }
 }

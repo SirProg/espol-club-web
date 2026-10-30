@@ -380,7 +380,7 @@ export default function Formularios() {
               </Button>
             </div>
             {previewOpen && (
-              <div className="space-y-3 rounded-[10px] bg-surface-alt p-4">
+              <div className="space-y-3 rounded-lg bg-surface-alt p-4">
                 <DynamicForm
                   fields={builder?.form.fields ?? []}
                   values={previewValues}
@@ -420,7 +420,7 @@ export default function Formularios() {
 function FieldEditor({ field, index, onChange, onRemove }) {
   const needsOptions = FIELD_TYPES_WITH_OPTIONS.includes(field.type)
   return (
-    <li className="rounded-[10px] bg-surface-alt/50 p-3 ring-1 ring-border">
+    <li className="rounded-lg bg-surface-alt/50 p-3 ring-1 ring-border">
       <div className="grid gap-3 sm:grid-cols-2">
         <Field
           label={`Etiqueta del campo ${index + 1}`}

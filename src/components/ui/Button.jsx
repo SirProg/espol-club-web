@@ -4,7 +4,7 @@ const VARIANTS = {
   primary:
     'bg-primary text-on-primary hover:bg-primary-strong disabled:bg-hairline disabled:text-ink-faint',
   secondary:
-    'bg-surface text-ink ring-1 ring-hairline hover:ring-primary hover:text-primary disabled:text-ink-faint disabled:ring-border',
+    'bg-transparent text-ink ring-[1.5px] ring-inset ring-primary hover:bg-primary/7 disabled:text-ink-faint disabled:ring-border',
   danger:
     'bg-danger text-on-danger hover:opacity-90 disabled:bg-hairline disabled:text-ink-faint',
   ghost:
@@ -12,13 +12,13 @@ const VARIANTS = {
 }
 
 const SIZES = {
-  sm: 'h-8 px-3 text-[13px]',
-  md: 'h-10 px-4 text-sm',
+  sm: 'min-h-11 px-4 text-[15px] md:min-h-[38px]',
+  md: 'min-h-11 px-5 text-base',
 }
 
 /**
- * Botón del panel. Plano, sin sombras decorativas; el color de estado solo en
- * la variante danger. Objetivo táctil ≥ 44px en el breakpoint móvil.
+ * Botón en píldora de Club-search. El color de estado solo en la variante
+ * danger. Objetivo táctil ≥ 44px en el breakpoint móvil.
  */
 const Button = forwardRef(function Button(
   { variant = 'primary', size = 'md', className = '', type = 'button', ...props },
@@ -28,7 +28,7 @@ const Button = forwardRef(function Button(
     <button
       ref={ref}
       type={type}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-md font-semibold transition-colors disabled:cursor-not-allowed md:min-h-0 ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-bold transition-[background-color,color,transform] duration-200 ease-gallery active:translate-y-px disabled:cursor-not-allowed ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
       {...props}
     />
   )

@@ -4,7 +4,7 @@ import { forwardRef, useId } from 'react'
  * Campo de formulario con etiqueta y error.
  *
  * Los errores del API (`ApiError.forField(name)`) se pintan bajo el input
- * exacto que los causó. Los campos heredan la voz de trabajo (Plex Sans).
+ * exacto que los causó. Los campos heredan la voz de trabajo (Atkinson).
  */
 const Field = forwardRef(function Field(
   {

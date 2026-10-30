@@ -6,9 +6,11 @@ import { useApi } from '../../hooks/useApi'
 import { ROUTES } from '../../routing/modules'
 import { label, statusTone } from '../../lib/enums'
 import { plural } from '../../lib/format'
+import { lacquerStyle } from '../../lib/branches'
 import SectionTitle from '../../components/ui/SectionTitle'
 import Badge from '../../components/ui/Badge'
-import Pennant from '../../components/ui/Pennant'
+import ClubArt from '../../components/ui/ClubArt'
+import ClubFold from '../../components/ui/ClubFold'
 import EmptyState from '../../components/ui/EmptyState'
 
 /**
@@ -118,29 +120,30 @@ export default function Clubes() {
             <li key={club.id}>
               <Link
                 to={ROUTES.APP_CLUB.replace(':clubId', club.id)}
-                className="flex h-full gap-4 rounded-[10px] bg-surface p-4 shadow-card ring-1 ring-border transition-colors hover:ring-primary"
+                className="club-card lacquered"
+                style={lacquerStyle(club.acronym)}
               >
-                <Pennant text={club.acronym} width={34} />
-                <div className="min-w-0 flex-1">
+                <ClubArt acronym={club.acronym} image={club.image} />
+                <ClubFold />
+                <div className="flex min-w-0 flex-1 flex-col px-5 pt-4 pb-5">
                   <div className="flex items-start justify-between gap-2">
-                    <p className="t-heading leading-tight">{club.name}</p>
+                    <p className="t-heading !text-[1.4rem]">{club.name}</p>
                     {club.status !== 'Active' && (
                       <Badge text={label(club.status)} tone={statusTone(club.status)} />
                     )}
                   </div>
-                  <p className="t-data mt-1">{club.acronym}</p>
                   <p className="t-caption mt-2 line-clamp-3">{club.description}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                  <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-3">
                     {(club.interest_areas ?? []).slice(0, 3).map((item) => (
                       <span
                         key={item.id}
-                        className="rounded-[6px] bg-surface-alt px-2 py-0.5 text-[11px] font-medium text-ink-muted"
+                        className="rounded-full bg-white/85 px-2.5 py-0.5 text-[13px] font-semibold text-[#1c1a3a]"
                       >
                         {item.name}
                       </span>
                     ))}
                   </div>
-                  <p className="t-caption mt-3">
+                  <p className="t-caption mt-3 font-semibold">
                     {club.faculty_code ?? '—'} ·{' '}
                     {plural(club.members_count, 'miembro', 'miembros')}
                   </p>

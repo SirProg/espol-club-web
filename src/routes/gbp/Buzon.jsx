@@ -184,7 +184,7 @@ export default function Buzon() {
       nombre: (
         <div>
           <div className="t-body font-medium">{member.full_name}</div>
-          <div className="t-caption font-mono">{member.enrollment}</div>
+          <div className="t-caption tabular-nums">{member.enrollment}</div>
         </div>
       ),
       rol: member.role ?? '—',
@@ -349,7 +349,7 @@ export default function Buzon() {
             </div>
 
             {detail.review_feedback && (
-              <div className="rounded-[10px] border border-warning-300 bg-warning-50 px-4 py-3 text-sm text-warning-800 dark:border-warning-700/50 dark:bg-warning-900/20 dark:text-warning-200">
+              <div className="rounded-lg bg-warning-soft px-4 py-3 text-sm text-warning">
                 <span className="font-semibold">Feedback de GBP:</span> {detail.review_feedback}
               </div>
             )}

@@ -23,7 +23,7 @@ export default function DynamicForm({
 
   if (fields.length === 0) {
     return (
-      <p className="t-caption rounded-[10px] bg-surface-alt px-4 py-3">
+      <p className="t-caption rounded-lg bg-surface-alt px-4 py-3">
         Aún no has añadido campos: el formulario se verá vacío.
       </p>
     )

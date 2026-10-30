@@ -91,14 +91,17 @@ los deja fuera del alcance de la interfaz.
 
 ## Sistema visual
 
-Portado de `espol-club/src/theme/theme.js`, para que la web y la app móvil se
-vean como el mismo producto. Los hex no se inventan aquí.
+Tomado de Club-search (*Encuentra tu comunidad en ESPOL*): pared de galería,
+tinta índigo, placas con profundidad y lacas por rama. La app móvil todavía usa
+el sistema institucional anterior, así que ambos entornos difieren por ahora.
 
-- **Azul PANTONE 275 C `#001A43`** — única identidad institucional.
-- **Escala Cool Gray 11 C** — único secundario.
-- **Rojo `#C8102E`** — acento de énfasis, usado con moderación.
-- **Spectral** para títulos · **IBM Plex Sans** para la UI · **IBM Plex Mono**
-  para los datos que son registros: matrículas, PAO, tokens, fechas de auditoría.
+- **Pared `#F7F6FA` · placa `#FFFFFF` · tinta `#1C1A3A`** — base en claro. El
+  tema oscuro, que Club-search no tiene, es la misma galería de noche.
+- **Lacas** (`src/lib/branches.js`) — un color y un pictograma por rama, con violeta `#7B61D1` para la selección. La rama
+  es una agrupación editorial por sigla; un club nuevo sin entrada cae en `otras`.
+- **Bricolage Grotesque** para títulos y siglas · **Atkinson Hyperlegible Next**
+  para todo lo demás, con cifras tabulares en los datos que son registros:
+  matrículas, PAO, tokens, fechas de auditoría.
 
 Tema claro/oscuro/sistema con la clave `localStorage['theme_mode']`, la misma
 que la app. El tema resuelto se fija en `<html data-theme>` antes del primer

@@ -1,6 +1,5 @@
 /**
  * Conjunto de chips para listas cortas (áreas de interés, permisos, habilidades).
- * Cuadrados, 6px — nunca píldoras.
  */
 export default function ChipList({ items = [], tone = 'neutral' }) {
   const classes = {
@@ -13,7 +12,7 @@ export default function ChipList({ items = [], tone = 'neutral' }) {
   return (
     <ul className="flex flex-wrap gap-1.5">
       {items.map((item, index) => (
-        <li key={index} className={`rounded-[6px] px-2 py-0.5 text-[11px] font-medium leading-4 ${chip}`}>
+        <li key={index} className={`rounded-full px-3 py-1 text-[13px] font-medium leading-5 ${chip}`}>
           {item}
         </li>
       ))}

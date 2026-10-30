@@ -13,7 +13,7 @@ import Button from '../../components/ui/Button'
 import EmptyState from '../../components/ui/EmptyState'
 import { label, statusTone } from '../../lib/enums'
 import { fmtDateTime } from '../../lib/format'
-import Pennant from '../../components/ui/Pennant'
+import ClubMark from '../../components/ui/ClubMark'
 
 /**
  * Panel del Líder (17) — el resumen que el líder ve al entrar.
@@ -61,7 +61,7 @@ export default function Panel() {
             header={
               <div className="flex w-full items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <Pennant text={club.data?.acronym} width={40} />
+                  <ClubMark acronym={club.data?.acronym} size={54} />
                   <div>
                     <h3 className="t-heading">{club.data?.name}</h3>
                     <p className="t-caption">{club.data?.acronym}</p>

@@ -1,13 +1,10 @@
 /**
- * Sistema visual de ESPOLCLUB — puerto fiel de espol-club/src/theme/theme.js.
+ * Sistema visual de ESPOLCLUB — el de Club-search (Encuentra tu comunidad).
  *
- * La identidad institucional viene del manual de marca de la ESPOL:
- *   · Azul PANTONE 275 C  → #001A43   (uso exclusivo de la identidad)
- *   · Escala PANTONE Cool Gray 11 C al 10 %–90 %  (único secundario)
- *   · Los "trazos": banderines con corte en chevrón, dispositivo gráfico propio
- *
- * Los hex son los mismos que en la app móvil: ambos entornos deben verse como
- * el mismo producto. No introducir colores nuevos aquí.
+ * Pared de galería clara, tinta índigo, placas con profundidad y lacas de
+ * guitarra por rama: los colores de club viven en lib/branches.js y no cambian
+ * con el tema. El oscuro no existe en Club-search; aquí es la misma galería de
+ * noche, con la tinta invertida.
  *
  * El tema resuelto vive en <html data-theme>, que fija el script anti-FOUC de
  * index.html. La preferencia (system|light|dark) vive en localStorage.
@@ -15,142 +12,197 @@
 
 /* ── Tema claro (y respaldo si el script no llegó a ejecutarse) ─────────── */
 :root {
-  /* Identidad institucional */
-  --espol-primary: #001a43;
-  --espol-primary-strong: #000e24;
-  --espol-primary-soft: #e7eaf2;
-  --espol-on-primary: #ffffff;
-  --espol-accent: #c8102e;
-  --espol-accent-soft: #fbe9ec;
-  /* Ámbar de la estrella del identificador: solo para destacados. */
-  --espol-star: #b8791b;
-  --espol-star-soft: #fbf0dc;
+  /* Tinta como color de acción */
+  --espol-primary: #1c1a3a;
+  --espol-primary-strong: #2e2b5a;
+  --espol-primary-soft: #e9e7f0;
+  --espol-on-primary: #f7f6fa;
+  --espol-accent: #c93a2c;
+  --espol-accent-soft: #fff4f2;
+  /* Ámbar de la laca de Industria, oscurecido para leerse como texto. */
+  --espol-star: #7d5100;
+  --espol-star-soft: #fdeccb;
 
   /* Superficies */
-  --espol-background: #f6f7f9;
-  --espol-surface: #ffffff;
-  --espol-surface-alt: #edeef1; /* cool 10 */
-  --espol-border: #dcdee4; /* cool 20 */
-  --espol-hairline: #c4c7d0; /* cool 30 */
+  --espol-background: #f7f6fa; /* pared */
+  --espol-surface: #ffffff; /* placa */
+  --espol-surface-alt: #e9e7f0; /* pared honda */
+  --espol-border: #dbd9e3;
+  --espol-hairline: #bdbacb;
 
   /* Texto */
-  --espol-ink: #161a22;
-  --espol-ink-muted: #565c6b; /* cool 70 */
-  --espol-ink-faint: #8c919f; /* cool 50 */
+  --espol-ink: #1c1a3a;
+  --espol-ink-muted: #55517a;
+  --espol-ink-faint: #625e84;
 
   /* Cabeceras */
-  --espol-header-bg: #001a43;
-  --espol-header-text: #ffffff;
+  --espol-header-bg: #f7f6fa;
+  --espol-header-text: #1c1a3a;
 
-  /* Bloques institucionales (barra lateral, identificador) */
-  --espol-hero-bg: #001a43;
-  --espol-hero-text: #ffffff;
-  --espol-hero-muted: #9aa7c2;
-  --espol-hero-line: #1b3057;
-  --espol-hero-avatar: #12294f;
+  /* Bloques de tinta */
+  --espol-hero-bg: #1c1a3a;
+  --espol-hero-text: #fbfafd;
+  --espol-hero-muted: #b8b4d4;
+  --espol-hero-line: #33305c;
+  --espol-hero-avatar: #2e2b5a;
 
   /* Estados */
-  --espol-success: #0f7a4a;
-  --espol-success-soft: #e2f1e9;
-  --espol-warning: #9a6206;
-  --espol-warning-soft: #fbf0dc;
-  --espol-danger: #b32218;
-  --espol-danger-soft: #fbe8e6;
+  --espol-success: #2b6427;
+  --espol-success-soft: #e1f0df;
+  --espol-warning: #7d5100;
+  --espol-warning-soft: #fdeccb;
+  --espol-danger: #b02a1e;
+  --espol-danger-soft: #fff4f2;
   /**
    * Tinta sobre el rojo sólido. En claro el rojo es oscuro y pide texto blanco;
-   * en oscuro sube a salmón y el blanco encima queda ilegible. Es la misma
-   * regla de luminancia que theme.js aplica en `clubPalette.onAccent`.
+   * en oscuro sube a salmón y el blanco encima queda ilegible.
    */
   --espol-on-danger: #ffffff;
 
-  /* Sombra de tarjeta */
-  --espol-shadow-card: 0 3px 10px rgba(10, 27, 61, 0.06);
+  /* Profundidad: placas colgadas de la pared */
+  --espol-shadow-card: 0 1px 0 rgb(255 255 255 / 0.7) inset, 0 1px 2px rgb(28 26 58 / 0.08),
+    0 12px 28px -14px rgb(28 26 58 / 0.32);
+  --espol-shadow-raised: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 2px 4px rgb(28 26 58 / 0.08),
+    0 28px 48px -22px rgb(28 26 58 / 0.45);
+
+  /* Selección en la órbita de la portada */
+  --espol-violet: #7b61d1;
+  --espol-violet-text: #5f48b4;
+  --espol-on-violet: #ffffff;
+
+  /* Banda y burbujas de la órbita */
+  --espol-bubble-light: #f8f7fb;
+  --espol-bubble: #eceaf3;
+  --espol-bubble-ink: #46475f;
+  --espol-bubble-edge: rgb(70 71 95 / 0.1);
+  --espol-bubble-shine: rgb(255 255 255 / 0.9);
+  --espol-band-1: #d3cfe0;
+  --espol-band-2: #dedbe8;
+  --espol-band-3: #e9e7f1;
+  --espol-band-4: #e6e3ee;
+  --espol-band-5: #e2dfeb;
+  --espol-band-6: #d6d2e2;
 }
 
 /* ── Tema oscuro ────────────────────────────────────────────────────────── */
-/* En oscuro el azul institucional pasa a ser el fondo y la interacción sube
-   de luminosidad para mantener el contraste. */
+/* La tinta se invierte: la acción sube a clara y la pared baja a índigo. */
 :root[data-theme='dark'] {
-  --espol-primary: #5b8def;
-  --espol-primary-strong: #a6c2f5;
-  --espol-primary-soft: #14213a;
-  --espol-on-primary: #04101f;
-  --espol-accent: #ff6f7d;
-  --espol-accent-soft: #33171b;
-  --espol-star: #e3a54b;
-  --espol-star-soft: #2e2413;
+  --espol-primary: #e8e4f4;
+  --espol-primary-strong: #ffffff;
+  --espol-primary-soft: #2b2850;
+  --espol-on-primary: #1c1a3a;
+  --espol-accent: #ff8a7a;
+  --espol-accent-soft: #3a1c1e;
+  --espol-star: #f0b45c;
+  --espol-star-soft: #33270f;
 
-  --espol-background: #080d18;
-  --espol-surface: #101828;
-  --espol-surface-alt: #151e2e;
-  --espol-border: #243149;
-  --espol-hairline: #2c3a55;
+  --espol-background: #131128;
+  --espol-surface: #1d1a38;
+  --espol-surface-alt: #272449;
+  --espol-border: #35315c;
+  --espol-hairline: #48447a;
 
-  --espol-ink: #e8ecf5;
-  --espol-ink-muted: #96a1b8;
-  --espol-ink-faint: #6d788f;
+  --espol-ink: #edeaf2;
+  --espol-ink-muted: #b4b0cf;
+  --espol-ink-faint: #9692b8;
 
-  --espol-header-bg: #0a1120;
-  --espol-header-text: #e8ecf5;
+  --espol-header-bg: #131128;
+  --espol-header-text: #edeaf2;
 
-  --espol-hero-bg: #0c1832;
-  --espol-hero-text: #edf1fa;
-  --espol-hero-muted: #8ea0c4;
-  --espol-hero-line: #1d2c4c;
-  --espol-hero-avatar: #1b2c51;
+  --espol-hero-bg: #0d0b1f;
+  --espol-hero-text: #edeaf2;
+  --espol-hero-muted: #a8a4c6;
+  --espol-hero-line: #2b2850;
+  --espol-hero-avatar: #2b2850;
 
-  --espol-success: #4fc98a;
-  --espol-success-soft: #0f2a1f;
-  --espol-warning: #e0ab5b;
-  --espol-warning-soft: #2a2214;
-  --espol-danger: #f2776f;
-  --espol-danger-soft: #2c1717;
+  --espol-success: #7fd48f;
+  --espol-success-soft: #14301f;
+  --espol-warning: #f0b45c;
+  --espol-warning-soft: #33270f;
+  --espol-danger: #ff9a8c;
+  --espol-danger-soft: #3a1c1e;
   --espol-on-danger: #2c1010;
 
-  --espol-shadow-card: 0 3px 10px rgba(0, 0, 0, 0.4);
+  /* En la oscuridad la sombra no separa: el canto de la placa sí. */
+  --espol-shadow-card: 0 0 0 1px #35315c, 0 12px 28px -14px rgb(0 0 0 / 0.6);
+  --espol-shadow-raised: 0 0 0 1px #35315c, 0 28px 48px -22px rgb(0 0 0 / 0.75);
+
+  --espol-violet: #a794ea;
+  --espol-violet-text: #c3b6f3;
+  --espol-on-violet: #1c1a3a;
+
+  --espol-bubble-light: #322e5c;
+  --espol-bubble: #272449;
+  --espol-bubble-ink: #d5d2e8;
+  --espol-bubble-edge: rgb(255 255 255 / 0.08);
+  --espol-bubble-shine: rgb(255 255 255 / 0.12);
+  --espol-band-1: #1a1833;
+  --espol-band-2: #211e3f;
+  --espol-band-3: #2c2951;
+  --espol-band-4: #29264c;
+  --espol-band-5: #242145;
+  --espol-band-6: #1c1a37;
 }
 
 /* Respaldo sin JavaScript: solo aplica si el script anti-FOUC no fijó
    data-theme, por eso el :not(). Con JS activo esta regla nunca gana. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --espol-primary: #5b8def;
-    --espol-primary-strong: #a6c2f5;
-    --espol-primary-soft: #14213a;
-    --espol-on-primary: #04101f;
-    --espol-accent: #ff6f7d;
-    --espol-accent-soft: #33171b;
-    --espol-star: #e3a54b;
-    --espol-star-soft: #2e2413;
+    --espol-primary: #e8e4f4;
+    --espol-primary-strong: #ffffff;
+    --espol-primary-soft: #2b2850;
+    --espol-on-primary: #1c1a3a;
+    --espol-accent: #ff8a7a;
+    --espol-accent-soft: #3a1c1e;
+    --espol-star: #f0b45c;
+    --espol-star-soft: #33270f;
 
-    --espol-background: #080d18;
-    --espol-surface: #101828;
-    --espol-surface-alt: #151e2e;
-    --espol-border: #243149;
-    --espol-hairline: #2c3a55;
+    --espol-background: #131128;
+    --espol-surface: #1d1a38;
+    --espol-surface-alt: #272449;
+    --espol-border: #35315c;
+    --espol-hairline: #48447a;
 
-    --espol-ink: #e8ecf5;
-    --espol-ink-muted: #96a1b8;
-    --espol-ink-faint: #6d788f;
+    --espol-ink: #edeaf2;
+    --espol-ink-muted: #b4b0cf;
+    --espol-ink-faint: #9692b8;
 
-    --espol-header-bg: #0a1120;
-    --espol-header-text: #e8ecf5;
+    --espol-header-bg: #131128;
+    --espol-header-text: #edeaf2;
 
-    --espol-hero-bg: #0c1832;
-    --espol-hero-text: #edf1fa;
-    --espol-hero-muted: #8ea0c4;
-    --espol-hero-line: #1d2c4c;
-    --espol-hero-avatar: #1b2c51;
+    --espol-hero-bg: #0d0b1f;
+    --espol-hero-text: #edeaf2;
+    --espol-hero-muted: #a8a4c6;
+    --espol-hero-line: #2b2850;
+    --espol-hero-avatar: #2b2850;
 
-    --espol-success: #4fc98a;
-    --espol-success-soft: #0f2a1f;
-    --espol-warning: #e0ab5b;
-    --espol-warning-soft: #2a2214;
-    --espol-danger: #f2776f;
-    --espol-danger-soft: #2c1717;
+    --espol-success: #7fd48f;
+    --espol-success-soft: #14301f;
+    --espol-warning: #f0b45c;
+    --espol-warning-soft: #33270f;
+    --espol-danger: #ff9a8c;
+    --espol-danger-soft: #3a1c1e;
     --espol-on-danger: #2c1010;
 
-    --espol-shadow-card: 0 3px 10px rgba(0, 0, 0, 0.4);
+    /* En la oscuridad la sombra no separa: el canto de la placa sí. */
+    --espol-shadow-card: 0 0 0 1px #35315c, 0 12px 28px -14px rgb(0 0 0 / 0.6);
+    --espol-shadow-raised: 0 0 0 1px #35315c, 0 28px 48px -22px rgb(0 0 0 / 0.75);
+
+    --espol-violet: #a794ea;
+    --espol-violet-text: #c3b6f3;
+    --espol-on-violet: #1c1a3a;
+
+    --espol-bubble-light: #322e5c;
+    --espol-bubble: #272449;
+    --espol-bubble-ink: #d5d2e8;
+    --espol-bubble-edge: rgb(255 255 255 / 0.08);
+    --espol-bubble-shine: rgb(255 255 255 / 0.12);
+    --espol-band-1: #1a1833;
+    --espol-band-2: #211e3f;
+    --espol-band-3: #2c2951;
+    --espol-band-4: #29264c;
+    --espol-band-5: #242145;
+    --espol-band-6: #1c1a37;
   }
 }
 
@@ -196,15 +248,18 @@
   --color-danger-soft: var(--espol-danger-soft);
   --color-on-danger: var(--espol-on-danger);
 
-  /* Tres voces: Spectral solo para títulos, Plex Sans para la UI de trabajo,
-     Plex Mono para los datos que son registros. */
-  --font-display: 'Spectral', ui-serif, Georgia, serif;
-  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
+  /* Dos voces: Bricolage para títulos y marcas, Atkinson para todo lo demás.
+     Los datos que son registros usan cifras tabulares, no otra familia. */
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Atkinson Hyperlegible Next Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 
   --shadow-card: var(--espol-shadow-card);
+  --shadow-raised: var(--espol-shadow-raised);
+
+  --ease-gallery: cubic-bezier(0.22, 1, 0.36, 1);
 }

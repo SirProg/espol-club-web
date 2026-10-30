@@ -84,7 +84,7 @@ export default function Credenciales() {
             return (
               <li
                 key={credencial.id}
-                className="overflow-hidden rounded-[14px] bg-surface shadow-card ring-1 ring-border"
+                className="overflow-hidden rounded-xl bg-surface shadow-raised"
               >
                 <div className="border-b border-border px-5 py-4">
                   <div className="flex items-start justify-between gap-3">

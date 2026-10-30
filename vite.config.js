@@ -16,7 +16,7 @@ export default defineConfig({
   // y este proxy lo reenvía a Django: el navegador no ve CORS en absoluto.
   server: {
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/api': 'http://127.0.0.1:8001',
     },
   },
   build: {

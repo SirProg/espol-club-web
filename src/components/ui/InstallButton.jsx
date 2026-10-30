@@ -91,8 +91,8 @@ export default function InstallButton({ variant = 'barra' }) {
         title="Instalar ESPOLCLUB en este dispositivo"
         className={
           variant === 'lateral'
-            ? 'flex w-full items-center justify-center gap-2 rounded-md bg-hero-line/40 px-3 py-2 text-xs font-semibold text-hero-text transition-colors hover:bg-hero-line/70 disabled:opacity-60'
-            : 'inline-flex min-h-9 items-center gap-1.5 rounded-md px-2.5 text-xs font-semibold text-primary ring-1 ring-border transition-colors hover:bg-primary-soft disabled:opacity-60'
+            ? 'flex w-full items-center justify-center gap-2 rounded-full px-3 py-2 text-[13px] font-semibold text-ink ring-1 ring-hairline transition-colors hover:bg-primary/7 disabled:opacity-60'
+            : 'inline-flex min-h-9 items-center gap-1.5 rounded-full px-3 text-[13px] font-semibold text-ink ring-1 ring-hairline transition-colors hover:bg-primary-soft disabled:opacity-60'
         }
       >
         <svg
@@ -132,7 +132,7 @@ export default function InstallButton({ variant = 'barra' }) {
             </li>
           ))}
         </ol>
-        <p className="t-caption mt-4 rounded-[10px] bg-surface-alt px-3 py-2">
+        <p className="t-caption mt-4 rounded-lg bg-surface-alt px-3 py-2">
           ESPOLCLUB quedará como una app más, con su icono y sin la barra del
           navegador. Funciona sin conexión para lo que ya hayas abierto.
         </p>

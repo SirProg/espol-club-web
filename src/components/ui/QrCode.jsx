@@ -14,7 +14,7 @@ import { QRCodeSVG } from 'qrcode.react'
 export default function QrCode({ value, size = 200, className = '' }) {
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-[10px] p-3 ${className}`}
+      className={`inline-flex items-center justify-center rounded-lg p-3 ${className}`}
       style={{ backgroundColor: '#FFFFFF' }}
     >
       <QRCodeSVG

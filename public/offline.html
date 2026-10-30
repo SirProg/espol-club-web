@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#001A43" />
+    <meta name="theme-color" content="#1C1A3A" />
     <title>Sin conexión — ESPOLCLUB</title>
     <style>
       :root { color-scheme: light dark; }
@@ -14,53 +14,52 @@
         display: grid;
         place-items: center;
         padding: 24px;
-        background: #f6f7f9;
-        color: #161a22;
-        font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #f7f6fa;
+        color: #1c1a3a;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
       }
       @media (prefers-color-scheme: dark) {
-        body { background: #080d18; color: #e8ecf5; }
-        .card { background: #101828 !important; border-color: #243149 !important; }
-        .muted { color: #96a1b8 !important; }
+        body { background: #131128; color: #f7f6fa; }
+        .card { background: #1d1a38 !important; border-color: #35315c !important; }
+        .muted { color: #b4b0cf !important; }
       }
       .card {
         max-width: 420px;
         width: 100%;
         background: #fff;
-        border: 1px solid #dcdee4;
+        border: 1px solid #d4d0de;
         border-radius: 14px;
         padding: 32px 28px;
         text-align: center;
       }
       h1 {
         margin: 20px 0 8px;
-        font-family: Spectral, Georgia, serif;
+        font-family: system-ui, sans-serif;
+        font-weight: 800;
         font-size: 24px;
         line-height: 30px;
       }
-      .muted { margin: 0; color: #565c6b; font-size: 14px; line-height: 21px; }
+      .muted { margin: 0; color: #55517a; font-size: 14px; line-height: 21px; }
       button {
         margin-top: 24px;
         min-height: 44px;
         padding: 0 20px;
         border: 0;
         border-radius: 10px;
-        background: #001a43;
+        background: #1c1a3a;
         color: #fff;
         font: inherit;
         font-weight: 600;
         cursor: pointer;
       }
       @media (prefers-color-scheme: dark) {
-        button { background: #5b8def; color: #04101f; }
+        button { background: #e8e4f4; color: #1c1a3a; }
       }
     </style>
   </head>
   <body>
     <main class="card">
-      <svg width="44" height="57" viewBox="0 0 100 130" aria-hidden="true">
-        <path d="M0 0 H100 V130 L50 101.4 L0 130 Z" fill="#001A43" />
-      </svg>
+      <img src="/Kokoa.svg" alt="" width="87" height="40" />
       <h1>Sin conexión</h1>
       <p class="muted">
         ESPOLCLUB necesita internet para mostrar los clubes y los eventos.

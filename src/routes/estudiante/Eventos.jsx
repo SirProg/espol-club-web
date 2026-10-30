@@ -66,7 +66,7 @@ export default function Eventos() {
             <li key={evento.id}>
               <Link
                 to={ROUTES.APP_EVENTO.replace(':eventId', evento.id)}
-                className="relative flex h-full flex-col overflow-hidden rounded-[10px] bg-surface pl-4 shadow-card ring-1 ring-border transition-colors hover:ring-primary"
+                className="relative flex h-full flex-col overflow-hidden rounded-lg bg-surface pl-4 shadow-raised transition-colors hover:ring-primary"
               >
                 {/* La franja dice si aún puedes inscribirte. */}
                 <span

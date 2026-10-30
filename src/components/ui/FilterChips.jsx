@@ -17,10 +17,10 @@ export default function FilterChips({ items = [], selected, onSelect, ariaLabel 
                 type="button"
                 aria-pressed={activo}
                 onClick={() => onSelect(item.value)}
-                className={`inline-flex min-h-9 items-center whitespace-nowrap rounded-[6px] px-3 text-xs font-semibold transition-colors ${
+                className={`inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 text-[15px] font-semibold transition-colors ${
                   activo
                     ? 'bg-primary text-on-primary'
-                    : 'bg-surface text-ink-muted ring-1 ring-border hover:text-ink hover:ring-primary'
+                    : 'bg-surface text-ink ring-[1.5px] ring-inset ring-primary hover:bg-primary/7'
                 }`}
               >
                 {item.label}

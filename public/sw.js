@@ -17,7 +17,7 @@
  * de este mismo origen, y por si acaso se descarta también cualquier ruta /api.
  */
 
-const VERSION = 'espolclub-v1'
+const VERSION = 'espolclub-v3'
 
 /** El armazón: lo mínimo para que la aplicación arranque sin red. */
 const SHELL = [
@@ -26,6 +26,7 @@ const SHELL = [
   '/offline.html',
   '/manifest.webmanifest',
   '/favicon.svg',
+  '/Kokoa.svg',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
 ]

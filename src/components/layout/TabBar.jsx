@@ -23,7 +23,7 @@ export default function TabBar({ modules }) {
     <nav
       aria-label="Navegación principal"
       // pb con safe-area: en iPhone la barra de gestos se come el borde inferior.
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface/95 backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background/95 backdrop-blur lg:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <ul className="flex">
@@ -33,26 +33,32 @@ export default function TabBar({ modules }) {
               to={module.path}
               end={module.end}
               className={({ isActive }) =>
-                `flex min-h-14 flex-col items-center justify-center gap-1 px-1 py-2 text-[10px] font-semibold transition-colors ${
-                  isActive ? 'text-primary' : 'text-ink-faint'
+                `flex min-h-14 flex-col items-center justify-center gap-0.5 px-1 py-1.5 text-xs font-semibold transition-colors ${
+                  isActive ? 'text-ink' : 'text-ink-muted'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={isActive ? 2.2 : 1.7}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
+                  <span
+                    className={`inline-flex h-7 w-12 items-center justify-center rounded-full ${
+                      isActive ? 'bg-primary text-on-primary' : ''
+                    }`}
                   >
-                    {ICONS[module.tab]}
-                  </svg>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={isActive ? 2.2 : 1.7}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      {ICONS[module.tab]}
+                    </svg>
+                  </span>
                   <span className="truncate">{module.tabLabel ?? module.label}</span>
                 </>
               )}

@@ -49,7 +49,7 @@ export default function ToastProvider({ children }) {
           <div
             key={toast.id}
             role="status"
-            className={`pointer-events-auto flex items-start justify-between gap-3 rounded-md px-4 py-3 text-sm font-medium shadow-card ring-1 ${toneBg[toast.tone] ?? toneBg.neutral}`}
+            className={`pointer-events-auto flex items-start justify-between gap-3 rounded-lg px-4 py-3 text-sm font-medium shadow-raised ring-1 ${toneBg[toast.tone] ?? toneBg.neutral}`}
           >
             <p className="leading-5">{toast.message}</p>
             <button

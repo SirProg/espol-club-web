@@ -59,7 +59,7 @@ export default function Historial() {
                 {listaPostulaciones.map((item) => (
                   <li
                     key={item.id}
-                    className="relative overflow-hidden rounded-[10px] bg-surface pl-4 shadow-card ring-1 ring-border"
+                    className="relative overflow-hidden rounded-lg bg-surface pl-4 shadow-raised"
                   >
                     <span
                       aria-hidden="true"
@@ -90,7 +90,7 @@ export default function Historial() {
                         Enviada el {fmtDateTime(item.submitted_at)}
                       </p>
                       {item.leader_feedback && (
-                        <p className="t-caption mt-2 rounded-[6px] bg-surface-alt px-2 py-1.5">
+                        <p className="t-caption mt-2 rounded-full bg-surface-alt px-2 py-1.5">
                           «{item.leader_feedback}»
                         </p>
                       )}
@@ -110,7 +110,7 @@ export default function Historial() {
                 {listaAsistencias.map((item) => (
                   <li
                     key={item.id}
-                    className="relative overflow-hidden rounded-[10px] bg-surface pl-4 shadow-card ring-1 ring-border"
+                    className="relative overflow-hidden rounded-lg bg-surface pl-4 shadow-raised"
                   >
                     <span
                       aria-hidden="true"
@@ -172,7 +172,7 @@ export default function Historial() {
             {detalle.leader_feedback && (
               <div>
                 <p className="t-label mb-1">Respuesta del club</p>
-                <p className="t-body rounded-[10px] bg-surface-alt px-3 py-2">
+                <p className="t-body rounded-lg bg-surface-alt px-3 py-2">
                   {detalle.leader_feedback}
                 </p>
               </div>

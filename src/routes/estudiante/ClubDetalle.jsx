@@ -10,7 +10,7 @@ import SectionTitle from '../../components/ui/SectionTitle'
 import Card from '../../components/ui/Card'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
-import Pennant from '../../components/ui/Pennant'
+import ClubArt from '../../components/ui/ClubArt'
 import InfoRow from '../../components/ui/InfoRow'
 import EmptyState from '../../components/ui/EmptyState'
 
@@ -55,11 +55,10 @@ export default function ClubDetalle() {
         </Link>
       </SectionTitle>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="min-w-0 space-y-4 lg:col-span-2">
-          <Card>
-            <div className="flex gap-4">
-              <Pennant text={data.acronym} width={44} />
+          <Card header={<ClubArt acronym={data.acronym} image={data.image} className="mb-2" />}>
+            <div>
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="t-heading">{data.name}</p>
@@ -95,7 +94,7 @@ export default function ClubDetalle() {
                     href={red.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-[6px] bg-surface-alt px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary-soft"
+                    className="rounded-full bg-surface-alt px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary-soft"
                   >
                     {red.network}
                   </a>

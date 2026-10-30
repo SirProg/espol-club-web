@@ -308,7 +308,7 @@ export default function Informacion() {
                       type="button"
                       onClick={() => toggleArea(area.id)}
                       aria-pressed={active}
-                      className={`rounded-[6px] px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
                         active
                           ? 'bg-primary text-on-primary'
                           : 'bg-surface-alt text-ink-muted ring-1 ring-border hover:ring-primary'

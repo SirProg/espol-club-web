@@ -120,7 +120,7 @@ export default function EventoDetalle() {
         </Link>
       </SectionTitle>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div className="min-w-0 space-y-4 lg:col-span-2">
           <Card tone={data.registration_is_open ? 'success' : 'neutral'}>
             <div className="flex flex-wrap items-center gap-2">
@@ -178,7 +178,7 @@ export default function EventoDetalle() {
                     el registro está cerrado o el evento es solo de miembros. */}
                 {data.blocked_message &&
                   (puede?.code === 'members_only' || puede?.code === 'registration_closed') && (
-                    <p className="t-caption mt-3 rounded-[10px] bg-surface-alt px-3 py-2">
+                    <p className="t-caption mt-3 rounded-lg bg-surface-alt px-3 py-2">
                       {data.blocked_message}
                     </p>
                   )}

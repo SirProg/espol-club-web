@@ -81,7 +81,7 @@ export default function ClubDetalle() {
     nombre: (
       <div>
         <div className="t-body font-medium">{member.full_name}</div>
-        <div className="t-caption font-mono">{member.enrollment}</div>
+        <div className="t-caption tabular-nums">{member.enrollment}</div>
       </div>
     ),
     estado: (
@@ -115,7 +115,7 @@ export default function ClubDetalle() {
       ) : (
         <>
           {statusIsPending && (
-            <div className="mb-5 rounded-[10px] border border-warning-300 bg-warning-50 px-4 py-3 text-sm font-medium text-warning-800 dark:border-warning-700/50 dark:bg-warning-900/20 dark:text-warning-200">
+            <div className="mb-5 rounded-lg bg-warning-soft px-4 py-3 text-sm font-medium text-warning">
               Este club está en «Pending Leader»: aún no tiene un líder activo. Asigna uno para que el panel del Líder se habilite.
             </div>
           )}

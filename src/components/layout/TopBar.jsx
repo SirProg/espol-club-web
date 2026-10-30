@@ -12,13 +12,13 @@ export default function TopBar({ title, onMenu }) {
   const { appRole, logout } = useAuth()
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/90 px-4 py-3 backdrop-blur md:px-8">
+    <header className="sticky top-0 z-20 bg-background/90 px-4 py-3 backdrop-blur md:px-8">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <button
             type="button"
             onClick={onMenu}
-            className="rounded-md p-2 text-ink-muted hover:bg-surface-alt lg:hidden"
+            className="rounded-full p-2 text-ink-muted hover:bg-surface-alt lg:hidden"
             aria-label="Abrir menú"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -36,7 +36,7 @@ export default function TopBar({ title, onMenu }) {
             <button
               type="button"
               onClick={logout}
-              className="rounded-md px-2 py-1 text-xs font-semibold text-danger hover:bg-danger-soft"
+              className="rounded-full px-3 py-1.5 text-[13px] font-semibold text-danger hover:bg-danger-soft"
             >
               Salir
             </button>

@@ -66,7 +66,7 @@ export default function Modal({ open, onClose, title, description, children, foo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 md:items-center md:p-6"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-primary-strong/50 p-0 dark:bg-black/60 md:items-center md:p-6"
       onClick={onClose}
     >
       <div
@@ -75,7 +75,7 @@ export default function Modal({ open, onClose, title, description, children, foo
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className={`max-h-[92vh] w-full overflow-y-auto rounded-t-[14px] bg-surface shadow-card ring-1 ring-border md:rounded-[14px] ${wide ? 'md:max-w-2xl' : 'md:max-w-lg'}`}
+        className={`max-h-[92vh] w-full overflow-y-auto rounded-t-xl bg-surface shadow-raised md:rounded-xl ${wide ? 'md:max-w-2xl' : 'md:max-w-lg'}`}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
@@ -88,7 +88,7 @@ export default function Modal({ open, onClose, title, description, children, foo
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md p-1 text-ink-muted hover:bg-surface-alt"
+            className="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-ink-muted ring-1 ring-border hover:bg-surface-alt hover:text-ink"
             aria-label="Cerrar"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
