@@ -45,14 +45,14 @@ navegador ve un solo origen y **CORS no interviene**. No hace falta tocar el
 
 ## Cuentas de prueba
 
-Sembradas por `python manage.py seed_espol_data` en el backend: 77 estudiantes y
-19 clubes reales de la ESPOL.
+Sembradas por `python manage.py seed_espol_data` en el backend: unos 120 estudiantes y
+40 clubes reales de la ESPOL.
 
 | Rol | Matrícula | Contraseña | Notas |
 | :--- | :--- | :--- | :--- |
 | Líder de Club | `202490000` | `espolclub2026` | Camila Macías Bustamante, Presidenta de KOKOA |
 | Administrador GBP | `GBP-001` | `gbp123` | Ana Rivas |
-| Miembro del Club | `202490036` | `espolclub2026` | Luis Carrera Solórzano, en 6 clubes (entre ellos KOKOA); ve nómina y escáner |
+| Miembro del Club | `202490082` | `espolclub2026` | Andrés Andrade Torres, en KOKOA e IIE; ve nómina y escáner |
 | Estudiante | `202311346` | `estudiante123` | Kevin Maldonado, sin club: ve solo la parte pública |
 
 La contraseña general del seed es `espolclub2026` (`core/espol_data.py`); las
@@ -137,27 +137,33 @@ el build y contiene el rewrite que necesita una SPA: sin él, recargar
 sitio servido por `http://` verá todas sus llamadas bloqueadas como contenido
 mixto.
 
-### Cuando exista el dominio
+### Dominio
 
-Sustituye `TU-DOMINIO` por el que te asigne InfinityFree (p. ej.
-`https://espolclub.rf.gd`) en estos tres sitios del **backend**
-(`../espol_club/.env`):
+El web se publica en **`https://clubes-espol.42web.io`**. El backend tiene que
+conocerlo en estos tres sitios de su `.env` (`~/www/espol_club_api/.env` en
+AlwaysData):
 
 ```ini
 # Sin esto el navegador bloquea todas las peticiones del panel.
-CORS_ALLOWED_ORIGINS=https://TU-DOMINIO
+CORS_ALLOWED_ORIGINS=https://clubes-espol.42web.io
 
 # Sin esto los correos de verificación y de recuperación llevan enlaces rotos:
-# hoy apunta a http://localhost:5500.
-FRONTEND_BASE_URL=https://TU-DOMINIO
+# por defecto apunta a http://localhost:5500.
+FRONTEND_BASE_URL=https://clubes-espol.42web.io
 
 # En producción no tiene valor por defecto, y vacío rechaza todas las peticiones.
 DJANGO_ALLOWED_HOSTS=espol-club.alwaysdata.net
 ```
 
+Tras cambiarlo, reinicia el sitio desde el panel de AlwaysData.
+
 En el **frontend** solo hay una variable, ya configurada en `.env.production`:
 `VITE_API_BASE=https://espol-club.alwaysdata.net/api/v1`. Cámbiala solo si el
 API se muda de host.
+
+InfinityFree antepone a cada visita una comprobación anti-bots (un script que
+fija la cookie `__test`). Un navegador la pasa sin que se note, pero `curl` y
+los monitores de disponibilidad ven esa página en vez del sitio.
 
 ### Comprobación tras subir
 
