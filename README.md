@@ -46,13 +46,13 @@ navegador ve un solo origen y **CORS no interviene**. No hace falta tocar el
 ## Cuentas de prueba
 
 Sembradas por `python manage.py seed_espol_data` en el backend: 77 estudiantes y
-18 clubes reales de la ESPOL.
+19 clubes reales de la ESPOL.
 
 | Rol | Matrícula | Contraseña | Notas |
 | :--- | :--- | :--- | :--- |
 | Líder de Club | `202490000` | `espolclub2026` | Camila Macías Bustamante, Presidenta de KOKOA |
 | Administrador GBP | `GBP-001` | `gbp123` | Ana Rivas |
-| Miembro del Club | `202490047` | `espolclub2026` | Andrés Álvarez, en 3 clubes; ve nómina y escáner |
+| Miembro del Club | `202490036` | `espolclub2026` | Luis Carrera Solórzano, en 6 clubes (entre ellos KOKOA); ve nómina y escáner |
 | Estudiante | `202311346` | `estudiante123` | Kevin Maldonado, sin club: ve solo la parte pública |
 
 La contraseña general del seed es `espolclub2026` (`core/espol_data.py`); las
